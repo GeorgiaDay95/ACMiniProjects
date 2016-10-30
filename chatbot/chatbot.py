@@ -1,13 +1,14 @@
 import wikipedia
+from random import randint
 
 goodResponse = ["happy", "great", "relaxed", "content", "excited", "good",]
 badResponse = ["sad", "down", "angry", "tearful",]
 pet = ["cat", "dog", "rabbit", "bunny", "hampster", "gerbil", "chinchilla", "rat", "mouse", "fish", "guinipig",
       "horse", "snake", "lizard", "frog", "parrot", "bird", "hedgehog",]
 fWords = []    
-bye = ["Well I'm pretty tired now, so i'll see you later!", "Bye!!", "Im bored of you now, cya!", "hmm, ill ttyl"]
-bye = len(bye)-1
-bye = bye[randint(0, bye )]
+byeee = ["Well I'm pretty tired now, so i'll see you later!", "Bye!!", "Im bored of you now, cya!", "hmm, ill ttyl"]
+byee = len(byeee)-1
+bye = byeee[randint(0, byee )]
 
 # only used stop words in the first few questions as an exaple - would work fully throughout code
 wordstuff = open("stopwords.txt")
@@ -15,7 +16,7 @@ words = wordstuff.read()
 word = words.split("\n")
 
 def splitResponse(response):
-    print response
+    #print response
     myInput = response.split(" ")
     for Input in myInput:
         if (Input not in words):
