@@ -4,7 +4,10 @@ goodResponse = ["happy", "great", "relaxed", "content", "excited", "good",]
 badResponse = ["sad", "down", "angry", "tearful",]
 pet = ["cat", "dog", "rabbit", "bunny", "hampster", "gerbil", "chinchilla", "rat", "mouse", "fish", "guinipig",
       "horse", "snake", "lizard", "frog", "parrot", "bird", "hedgehog",]
-fWords = []     
+fWords = []    
+bye = ["Well I'm pretty tired now, so i'll see you later!", "Bye!!", "Im bored of you now, cya!", "hmm, ill ttyl"]
+bye = len(bye)-1
+bye = bye[randint(0, bye )]
 
 # only used stop words in the first few questions as an exaple - would work fully throughout code
 wordstuff = open("stopwords.txt")
@@ -20,7 +23,7 @@ def splitResponse(response):
 #    print fWords
     return fWords[-1]
 
-
+# can type and type of yes or no as answer and will accept it
 def yesNoAnswer(answer):
     answer = answer.lower()
     YNresponse = False
@@ -35,7 +38,7 @@ def yesNoAnswer(answer):
 name = splitResponse(raw_input("Hi, I'm ChatBot - What's your name? "))
 print("Hello "+ name + "! Nice to meet you.")
 feeling = splitResponse(raw_input("So, how are you feeling today " + name + "? "))
-    
+    # if statements to determine the answer whether happy or sad
 if feeling not in str(badResponse) and feeling not in str(goodResponse):
     print("Sorry, I dont know what that means..")
     feeling = ""
@@ -52,7 +55,7 @@ elif feeling in str(goodResponse):
     print("Oh I see! Well I am " + feeling + " that you are " + feeling)
     favPet = raw_input("I really want to get to know you " + name + ". What is your favourite pet? ")
     
-
+#if pet isnt in array will be added to the array is you tell chatbot it is a real animal
 while (favPet not in str(pet)):
     question = raw_input("I havent heard of a " + favPet + " before. Is that really a pet? ")
     if (question == "no"):
@@ -76,8 +79,7 @@ if favPet in str(pet):
     elif question == "no":
         print("Ohh. Well its weird you would say its your favourite pet then.. What can I say, you are only human")
         
-        
-        
+        #can talk about anything from wikipedia search     
 response = raw_input("I'll stop asking the questions! What do you want to talk about? ")
 wikiSearch = wikipedia.search(response, results = 10)
 #print (wikiSearch)
@@ -89,6 +91,7 @@ for answers in range(len(wikiSearch)):
         print (info)
         break
     x = x + 1
+    # limmits results to three things so doesnt get tedious
     if (x >= 3):
         yesNo = raw_input("I'm running out of ideas here.. Did you mean " + wikiSearch[x] + "? ")
         if (yesNoAnswer(yesNo) == "yes"):
@@ -98,12 +101,13 @@ for answers in range(len(wikiSearch)):
         if (yesNoAnswer(yesNo) == "no"):
             yesNo = raw_input("Well I don't know then! Do you want to change the subject? ")
             if (yesNoAnswer(yesNo) == "yes"):
+                #able to change subject if you said no too many times
                 response = raw_input("What do you want to change the subject to? ")
                 wikiSearch = wikipedia.search(response, results = 10)
                 x = 1
             if (yesNoAnswer(yesNo) == "no"):
                 print "Okay, sorry I dont know everything."
                 break
-print "Well I'm pretty tired now, so i'll see you later!"
+print bye
 
     
